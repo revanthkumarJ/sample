@@ -38,7 +38,7 @@ jobs:
 
       # Debug: List APK outputs
       - name: List APK outputs
-        run: ls -R sample/build/outputs/apk/release
+        run: ls -R app/build/outputs/apk/release
 
       # Decode keystore from GitHub secret
       - name: Decode Keystore
@@ -52,14 +52,14 @@ jobs:
             --ks-key-alias ${{ secrets.KEY_ALIAS }} \
             --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
             --key-pass pass:${{ secrets.KEY_PASSWORD }} \
-            --out sample/build/outputs/apk/release/sample-release-signed.apk \
-            sample/build/outputs/apk/release/sample-release.apk
+            --out app/build/outputs/apk/release/app-release-signed.apk \
+            app/build/outputs/apk/release/app-release.apk
 
       # Verify APK signature
       - name: Verify APK signature
         run: |
           echo "Verifying signed APK..."
-          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs sample/build/outputs/apk/release/sample-release-signed.apk
+          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs app/build/outputs/apk/release/app-release-signed.apk
 
       # Upload signed APK to Firebase App Distribution
       - name: Upload signed APK to Firebase
@@ -68,5 +68,5 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: testers
-          file: sample/build/outputs/apk/release/sample-release-signed.apk
+          file: app/build/outputs/apk/release/app-release-signed.apk
           releaseNotes: ${{ inputs.release_notes }}
