@@ -15,21 +15,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout repo
       - uses: actions/checkout@v5
 
+      # Setup Java
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
+      # Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      # Make gradlew executable
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      # Build unsigned release APK
       - name: Build unsigned release
         run: ./gradlew assembleRelease
+
+      # Debug: List APK outputs
+      - name: List APK outputs
+        run: ls -R sample/build/outputs/apk/release
 
       # Decode keystore from GitHub secret
       - name: Decode Keystore
@@ -43,14 +52,14 @@ jobs:
             --ks-key-alias ${{ secrets.KEY_ALIAS }} \
             --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
             --key-pass pass:${{ secrets.KEY_PASSWORD }} \
-            --out app/build/outputs/apk/release/app-release-signed.apk \
-            app/build/outputs/apk/release/app-release.apk
+            --out sample/build/outputs/apk/release/sample-release-signed.apk \
+            sample/build/outputs/apk/release/sample-release.apk
 
-      # Verify that APK is signed + print SHA1 fingerprint
+      # Verify APK signature
       - name: Verify APK signature
         run: |
           echo "Verifying signed APK..."
-          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs app/build/outputs/apk/release/app-release-unsigned.apk
+          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs sample/build/outputs/apk/release/sample-release-signed.apk
 
       # Upload signed APK to Firebase App Distribution
       - name: Upload signed APK to Firebase
@@ -59,5 +68,5 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: testers
-          file: app/build/outputs/apk/release/app-release-signed.apk
+          file: sample/build/outputs/apk/release/sample-release-signed.apk
           releaseNotes: ${{ inputs.release_notes }}
