@@ -50,7 +50,7 @@ jobs:
       - name: Verify APK signature
         run: |
           echo "Verifying signed APK..."
-          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs app/build/outputs/apk/release/app-release-signed.apk
+          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --print-certs app/build/outputs/apk/release/app-release-unsigned.apk
 
       # Upload signed APK to Firebase App Distribution
       - name: Upload signed APK to Firebase
