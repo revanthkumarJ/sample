@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.r_components.StartingComponent
 import com.example.sample.ui.theme.SampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,9 +38,8 @@ fun Greeting(modifier: Modifier = Modifier) {
         Modifier.fillMaxSize()
     )
     {
-        Text(
+        StartingComponent(
             text = "Sample App To Play With Github Actions",
-            modifier = modifier.align(Alignment.Center)
         )
     }
 }
