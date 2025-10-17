@@ -14,6 +14,6 @@ fun AppNavHost() {
     NavHost(navController = navController, startDestination = HomeNavigation) {
 
         homeDestination(navController)
-        loaderDestination()
+        loaderDestination(navController)
     }
 }
