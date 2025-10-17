@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sample.advanced.navigateToAdvancedScreen
+import com.example.sample.cards.navigateToCardsScreen
 import com.example.sample.components.RButton
 import com.example.sample.error_components.navigateToErrorScreen
 import com.example.sample.loaders.navigateToLoaderScreen
@@ -45,6 +46,9 @@ fun HomeContent(
             },
             ListItem("Advanced Components") {
                 navController.navigateToAdvancedScreen()
+            },
+            ListItem("Cards") {
+                navController.navigateToCardsScreen()
             }
         )
 
