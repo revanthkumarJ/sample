@@ -14,10 +14,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sample.components.RButton
+import com.example.sample.error_components.navigateToErrorScreen
 import com.example.sample.loaders.navigateToLoaderScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,17 +39,23 @@ fun HomeContent(
             ListItem("Loaders") {
                 navController.navigateToLoaderScreen()
             },
-            ListItem("Item 2") {  },
+            ListItem("Empty Screens") {
+                navController.navigateToErrorScreen()
+            },
             ListItem("Item 3") {  }
         )
 
         LazyColumn(
             Modifier.padding(paddingValues)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                Text("Each button takes you to a set of components where each button has component above has file name of library from where you can take the component and view code button to see code")
+                Text(
+                    text="Each button takes you to a set of components where each button takes you to the preview of component and button name is the component name after adding the library you can use that component",
+                    modifier = Modifier.padding(8.dp)
+                    )
             }
 
             items(items.size) { index ->
