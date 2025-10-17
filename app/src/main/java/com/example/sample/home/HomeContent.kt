@@ -19,10 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sample.advanced.navigateToAdvancedScreen
+import com.example.sample.buttons.navigateToButtonScreen
 import com.example.sample.cards.navigateToCardsScreen
 import com.example.sample.components.RButton
 import com.example.sample.error_components.navigateToErrorScreen
 import com.example.sample.loaders.navigateToLoaderScreen
+import com.example.sample.login.navigateToLoginScreen
 import com.example.sample.text_felds.navigateToTextFieldsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,11 +55,17 @@ fun HomeContent(
             },
             ListItem("Text Fields") {
                 navController.navigateToTextFieldsScreen()
+            },
+            ListItem("Login Page") {
+                navController.navigateToLoginScreen()
+            },
+            ListItem("Buttons") {
+                navController.navigateToButtonScreen()
             }
         )
 
         LazyColumn(
-            Modifier.padding(paddingValues)
+            Modifier.padding(paddingValues).padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -65,7 +73,6 @@ fun HomeContent(
             item {
                 Text(
                     text="Each button takes you to a set of components where each button takes you to the preview of component and button name is the component name after adding the library you can use that component",
-                    modifier = Modifier.padding(8.dp)
                     )
             }
 
