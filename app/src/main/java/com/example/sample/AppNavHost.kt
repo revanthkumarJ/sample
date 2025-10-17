@@ -3,6 +3,7 @@ package com.example.sample
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.sample.advanced.advancedScreensDestination
 import com.example.sample.error_components.errorScreensDestination
 import com.example.sample.home.HomeNavigation
 import com.example.sample.home.homeDestination
@@ -17,5 +18,6 @@ fun AppNavHost() {
         homeDestination(navController)
         loaderDestination(navController)
         errorScreensDestination(navController)
+        advancedScreensDestination(navController)
     }
 }

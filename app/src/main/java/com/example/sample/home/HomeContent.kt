@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.sample.advanced.navigateToAdvancedScreen
 import com.example.sample.components.RButton
 import com.example.sample.error_components.navigateToErrorScreen
 import com.example.sample.loaders.navigateToLoaderScreen
@@ -39,10 +40,12 @@ fun HomeContent(
             ListItem("Loaders") {
                 navController.navigateToLoaderScreen()
             },
-            ListItem("Empty Screens") {
+            ListItem("Empty Components") {
                 navController.navigateToErrorScreen()
             },
-            ListItem("Item 3") {  }
+            ListItem("Advanced Components") {
+                navController.navigateToAdvancedScreen()
+            }
         )
 
         LazyColumn(
@@ -62,7 +65,6 @@ fun HomeContent(
                 RButton(text = items[index].text, onClick = items[index].onClick)
             }
         }
-
     }
 }
 
