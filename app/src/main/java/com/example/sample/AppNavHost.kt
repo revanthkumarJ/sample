@@ -9,6 +9,7 @@ import com.example.sample.error_components.errorScreensDestination
 import com.example.sample.home.HomeNavigation
 import com.example.sample.home.homeDestination
 import com.example.sample.loaders.loaderDestination
+import com.example.sample.text_felds.textFieldsScreensDestination
 
 @Composable
 fun AppNavHost() {
@@ -21,5 +22,6 @@ fun AppNavHost() {
         errorScreensDestination(navController)
         advancedScreensDestination(navController)
         cardsScreenDestination(navController)
+        textFieldsScreensDestination(navController)
     }
 }

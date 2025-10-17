@@ -23,6 +23,7 @@ import com.example.sample.cards.navigateToCardsScreen
 import com.example.sample.components.RButton
 import com.example.sample.error_components.navigateToErrorScreen
 import com.example.sample.loaders.navigateToLoaderScreen
+import com.example.sample.text_felds.navigateToTextFieldsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,6 +50,9 @@ fun HomeContent(
             },
             ListItem("Cards") {
                 navController.navigateToCardsScreen()
+            },
+            ListItem("Text Fields") {
+                navController.navigateToTextFieldsScreen()
             }
         )
 
